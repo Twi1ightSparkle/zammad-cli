@@ -1,0 +1,19 @@
+[Global]
+# Primarly Zammad to work with and write to
+
+# Set the URL and port to connect on for the Zammad to write to. Specify :port if not standard
+url: http://localhost
+
+# API key for an user account with full Admin permissions. The key need the ADMIN box checked
+api_key: your_api_key
+
+
+
+[ReadZammad]
+# Used for reading data from another Zammad to clone it's settings
+
+# Set the URL and port to connect on for the Zammad to read from. Specify :port if not standard
+url: https://newvector.zammad.com
+
+# API key for an user account with full Admin permissions. The key need the ADMIN box checked
+api_key: your_api_ley

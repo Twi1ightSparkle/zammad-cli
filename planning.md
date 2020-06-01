@@ -6,6 +6,7 @@
 - [Zammad-admin planning](#zammad-admin-planning)
 - [Table of Contents](#table-of-contents)
 - [Misc](#misc)
+- [Program functionality](#program-functionality)
 - [What need to be managed](#what-need-to-be-managed)
     - [Users](#users)
         - [Fields](#fields)
@@ -103,6 +104,36 @@ Content-Type: application/json
   "note":"some note"
 }
 ```
+
+# Program functionality
+    --all               Manage all categories. Same as --email-filter --group --macro --organization --overview --role --email-signatures --trigger --user
+-a  --api-key           API key with all permissions, including all admin
+    --clone             Clone one zammad to another
+-c  --config            /path/to/config.ini (if not same directory as zammad-admin.py)
+    --delete            Delete one
+-f  --email-filter      Manage email filters
+    --get               Get all
+-g  --group             Manage groups
+-h  --help              This help
+-i  --id                Object ID
+-j  --json-data         JSON data to send somewhere
+-k  --knowledge-base    Planned v2 feature. Manage knowledge base
+    --macro             Manage macros
+-n  --new               Create new
+    --organization      Manage organizations
+-o  --overview          Manage overviews
+    --read-target       Zammad URL to read from (if not in config)
+-r  --role              Manage roles
+-s  --email-signatures  Manage email signatures
+-t  --tag               Manage tags
+    --ticket            Planned v2 feature. Manage tickets
+    --trigger           Manage triggers
+    --update            Update one
+-u  --user              Manage users
+    --version           Show program version
+-v  --verbose           Show debug logging
+-w  --write-target      Zammad URL to write to (if not in config)
+
 
 
 # What need to be managed

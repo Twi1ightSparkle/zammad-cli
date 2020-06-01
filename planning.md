@@ -1,9 +1,9 @@
-# Zammad-admin planning
+# Zammad-cli planning
 
 # Table of Contents
 <!-- TOC -->
 
-- [Zammad-admin planning](#zammad-admin-planning)
+- [Zammad-cli planning](#zammad-cli-planning)
 - [Table of Contents](#table-of-contents)
 - [Misc](#misc)
 - [Program functionality](#program-functionality)

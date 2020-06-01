@@ -23,28 +23,29 @@ if __name__ == '__main__':
     info.add_argument('-h', '--help', default=argparse.SUPPRESS,                action='help',          help='Show this help message and exit')
     info.add_argument('-V', '--version', version='%(prog)s, v{}'.format(misc.version), action='version', help='Show program version')
 
-    config.add_argument('-a', '--api-key',      type=str,   metavar='KEY',      action='store',         help='API key with all permissions, including all admin')
-    config.add_argument('-Z', '--api-read-key', type=str,   metavar='KEY',      action='store',         help='API key to read Zammad with all permissions, including all admin')
+    config.add_argument('-aw', '--api-key',     type=str,   metavar='KEY',      action='store',         help='API key with all permissions, including all admin')
+    config.add_argument('-ar', '--api-read-key', type=str,  metavar='KEY',      action='store',         help='API key to read Zammad with all permissions, including all admin')
     config.add_argument('-c', '--config',       type=str,   metavar='PATH',     action='store',         help='/path/to/config.ini (. for same directory as %(prog)s)')
-    config.add_argument('-F', '--filter',       type=str,   metavar='STRING',   action='store',         help='Filter object. Used with -L')
+    config.add_argument('-fi', '--filter',      type=str,   metavar='STRING',   action='store',         help='Filter object. Used with -L')
     config.add_argument('-j', '--json',         type=str,   metavar='JSON',     action='store',         help='JSON data')
     config.add_argument('-J', '--json-file',    type=str,   metavar='PATH',     action='store',         help='JSON data file path')
-    config.add_argument('-R', '--read-target',  type=str,   metavar='URL',      action='store',         help='Zammad URL to read from')
-    config.add_argument('-W', '--write-target', type=str,   metavar='URL',      action='store',         help='Zammad URL to work with')
+    config.add_argument('-rt', '--read-target', type=str,   metavar='URL',      action='store',         help='Zammad URL to read from')
+    config.add_argument('-wt', '--write-target', type=str,  metavar='URL',      action='store',         help='Zammad URL to work with')
     config.add_argument('-v', '--verbose',                                      action='count',         help='Show debug logging')
 
-    category.add_argument('-A', '--all',                                        action='store_true',    help='Manage all categories. Cannot be used with -DGNU')
+    category.add_argument('-a', '--all',                                        action='store_true',    help='Manage all categories. Cannot be used with -DGNU')
+    category.add_argument('-co', '--collection',                                action='store_true',    help='Manage a collection. This currently mean -fgor')
     category.add_argument('-f', '--email-filter',                               action='store_true',    help='Manage email filters')
     category.add_argument('-s', '--email-signature',                            action='store_true',    help='Manage email signatures')
     category.add_argument('-g', '--group',                                      action='store_true',    help='Manage groups')
     category.add_argument('-k', '--knowledge-base',                             action='store_true',    help='Manage knowledge base. Not implemented. Planned for v2')
     category.add_argument('-m', '--macro',                                      action='store_true',    help='Manage macros')
-    category.add_argument('-O', '--organization',                               action='store_true',    help='Manage organizations')
+    category.add_argument('-or', '--organization',                              action='store_true',    help='Manage organizations')
     category.add_argument('-o', '--overview',                                   action='store_true',    help='Manage overviews')
     category.add_argument('-r', '--role',                                       action='store_true',    help='Manage roles')
-    category.add_argument('-t', '--tag',                                        action='store_true',    help='Manage tags')
-    category.add_argument('-M', '--ticket',                                     action='store_true',    help='Manage tickets. Not implemented. Planned for v2')
-    category.add_argument('-T', '--trigger',                                    action='store_true',    help='Manage triggers')
+    category.add_argument('-ta', '--tag',                                       action='store_true',    help='Manage tags')
+    category.add_argument('-ti', '--ticket',                                    action='store_true',    help='Manage tickets. Not implemented. Planned for v2')
+    category.add_argument('-tr', '--trigger',                                   action='store_true',    help='Manage triggers')
     category.add_argument('-u', '--user',                                       action='store_true',    help='Manage users')
 
     action.add_argument('-C', '--clone',                                        action='store_true',    help='Clone one Zammad to another. Use with -R, -W and for example -A')
@@ -114,11 +115,11 @@ if __name__ == '__main__':
     # Validate supplied JSON data
     if args.json:
         json_data = misc.validate_json(args.json)
-    
+
     # Load and Validate JSON data file
-    if args.json_file:
-        if os.path.isfile(args.json_file):
-            f = open(args.json_file, 'r')
+    if config_file:
+        if os.path.isfile(config_file):
+            f = open(config_file, 'r')
             temp_json = f.read()
             f.close()
             json_data = misc.validate_json(temp_json)

@@ -23,13 +23,15 @@ class ZammadApi:
 
     def delete(self):
         """List data from Zammad"""
-        result = rest_api.req('DELETE', self.api_endpoint, self.api_key)
+        self.result = rest_api.req('DELETE', self.api_endpoint, self.api_key)
 
-        if 'error' in result:
-            print(f'API error from function \n{result.get('error')[0]}\nError message: {result.get('error')[1]}')
+        if 'error' in self.result:
+            err_func = self.result.get('error')[0]
+            err_msg = self.result.get('error')[1]
+            print(f'API error from function {err_func}\nError message: {err_msg}')
             exit(1)
         else:
-            return result
+            return self.result
     
     def get(self):
         pass

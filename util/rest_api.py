@@ -5,26 +5,26 @@ import requests
 
 # Functions
 
-def req(operation, target, token, data=None):
-    """Read or write to rest API
+def req(method, target, token, data=None):
+    '''Read or write to rest API
 
     Args:
-        operation: Must be one of GET, PUT, POST, DELETE
+        method: Must be one of GET, PUT, POST, DELETE
         target: Link and port to connect to
         token: API token
         data: Optional, default Null. What data to PUT
     
     Returns:
         Decoded JSON data or error in JSON format
-    """
+    '''
 
-    # Check operation valid
-    if operation not in ['GET', 'PUT', 'POST', 'DELETE']:
-        return {'error': ['rest_api.req', f'Invalid operation {operation}']}
+    # Check method valid
+    if method not in ['GET', 'PUT', 'POST', 'DELETE']:
+        return {'error': ['rest_api.req', f'Invalid method {method}']}
     
     # Check that data supplied with PUT and POST
-    if (operation == 'PUT' or operation == 'POST') and not data:
-        return {'error': ['rest_api.req', f'data must be supplied when {operation} is used']}
+    if (method == 'PUT' or method == 'POST') and not data:
+        return {'error': ['rest_api.req', f'data must be supplied when {method} is used']}
 
     # Build header and data
     if data:
@@ -38,14 +38,7 @@ def req(operation, target, token, data=None):
 
     # Try connecting
     try:
-        if operation == 'GET':
-            response = requests.get(target, headers=headers)
-        elif operation == 'PUT':
-            response = requests.put(target, headers=headers, data=data)
-        elif operation == 'POST':
-            response = requests.post(target, headers=headers, data=data)
-        elif operation == 'DELETE':
-            response = requests.delete(target, headers=headers)
+        response = requests.request(method=method, url=target, headers=headers, data=data)
 
     except Exception as error:
         return {'error': ['rest_api.req', f'Error connecting to {target}. Error message: {error}']}

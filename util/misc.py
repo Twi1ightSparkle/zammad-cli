@@ -2,10 +2,11 @@
 import argparse
 from argparse import HelpFormatter
 import json
+import pydoc
 
 
 # Global vars
-version = '0.1 alfa. Released May 31, 2020. Copyright Twilight Sparkle 2020'
+version = '0.02 alfa'
 
 # Functions
 def validate_json(json_data):
@@ -27,9 +28,25 @@ def validate_json(json_data):
         exit(1)
 
 
+def pp_json(json_data, less=False):
+    """Pretty print JSON less or stdout
+
+    Args:
+        json_data: Some JSON data
+        less: use less instead of printing to stdout. Default False
+    
+    Returns:
+        Nothing
+    """
+
+    if less:
+        pydoc.pager(json.dumps(json_data, indent=4))
+    else:
+        print(json.dumps(json_data, indent=2))
+
+
 
 # Classes
-
 class CustomHelp(HelpFormatter):
     """Format --help"""
 

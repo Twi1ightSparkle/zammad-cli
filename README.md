@@ -132,6 +132,6 @@ Actions:
 * Bug fixes.
 * Created some basic documentation.
 
-### Version 0.01 alfa. Release May 31, 2020
+### Version 0.01 alpha. Release May 31, 2020
 
-First version. Command line options mostly layed out. Not much else working
+First version. Command line options mostly laid out. Not much else working
